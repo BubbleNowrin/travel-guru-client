@@ -6,6 +6,7 @@ import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import Signup from "../components/SignUp/Signup";
 import Main from "../Layouts/Main";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const routes = createBrowserRouter([
     {
@@ -24,21 +25,21 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/booking',
-                element: <Booking></Booking>
+                element: <PrivateRoutes><Booking></Booking></PrivateRoutes>
             },
             {
                 path: '/booking/:id',
                 loader: ({ params }) => fetch(`https://travel-guru-server-gilt.vercel.app/locations/${params.id}`),
-                element: <Booking></Booking>
+                element: <PrivateRoutes><Booking></Booking></PrivateRoutes>
             },
             {
                 path: '/details',
-                element: <Details></Details>
+                element: <PrivateRoutes><Details></Details></PrivateRoutes>
             },
             {
                 path: '/details/:id',
                 loader: async ({ params }) => { return fetch(`https://travel-guru-server-gilt.vercel.app/hotels/${params.id}`) },
-                element: <Details></Details>
+                element: <PrivateRoutes><Details></Details></PrivateRoutes>
             },
             {
                 path: '/signup',
