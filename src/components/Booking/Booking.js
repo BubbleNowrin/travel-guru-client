@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 const Booking = () => {
@@ -7,11 +7,13 @@ const Booking = () => {
     const locations = useLoaderData();
     console.log(locations);
 
+    const { id, name, details } = locations;
+
     return (
         <div className='home h-screen w-full grid grid-cols-2 gap-4'>
             <div className="mx-auto w-full mt-20 max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 backdrop-blur">
-                <h1 className='text-orange-500 text-3xl'>{locations.name}</h1>
-                <p className='text-white text-xl'>{locations.details}</p>
+                <h1 className='text-orange-500 text-3xl'>{name}</h1>
+                <p className='text-white text-xl'>{details}</p>
             </div>
             <div className="mx-auto w-full mt-20 max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100 backdrop-blur">
                 <form action="" className="space-y-12 ng-untouched ng-pristine ng-valid">
@@ -43,7 +45,9 @@ const Booking = () => {
                     </div>
                     <div className="space-y-2">
                         <div>
-                            <button type="button" className="w-full px-8 py-3 font-semibold rounded-md bg-orange-500 dark:text-gray-900">Book</button>
+                            <Link to={`/details/${id}`}>
+                                <button type="button" className="w-full px-8 py-3 font-semibold rounded-md  bg-orange-500 hover:bg-orange-400 text-white">Book</button>
+                            </Link>
                         </div>
                     </div>
                 </form>

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import About from "../components/About/About";
 import Booking from "../components/Booking/Booking";
+import Details from "../components/Details/Details";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import Signup from "../components/SignUp/Signup";
@@ -11,6 +12,11 @@ export const routes = createBrowserRouter([
         path: '/',
         element: <Main></Main>,
         children: [
+            {
+                path: '/',
+                loader: () => fetch('https://travel-guru-server-gilt.vercel.app/locations'),
+                element: <Home></Home>
+            },
             {
                 path: '/home',
                 loader: () => fetch('https://travel-guru-server-gilt.vercel.app/locations'),
@@ -24,6 +30,15 @@ export const routes = createBrowserRouter([
                 path: '/booking/:id',
                 loader: ({ params }) => fetch(`https://travel-guru-server-gilt.vercel.app/locations/${params.id}`),
                 element: <Booking></Booking>
+            },
+            {
+                path: '/details',
+                element: <Details></Details>
+            },
+            {
+                path: '/details/:id',
+                loader: async ({ params }) => { return fetch(`https://travel-guru-server-gilt.vercel.app/hotels/${params.id}`) },
+                element: <Details></Details>
             },
             {
                 path: '/signup',

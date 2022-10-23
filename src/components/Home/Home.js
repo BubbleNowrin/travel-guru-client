@@ -5,7 +5,7 @@ import './Home.css'
 
 const Home = () => {
     const locations = useLoaderData();
-    console.log(locations);
+
     return (
         <div className='home w-full h-screen flex flex-row items-center justify-center gap-4'>
             {
